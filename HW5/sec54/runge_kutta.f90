@@ -1,0 +1,33 @@
+        program runge_kutta
+        real(kind=4) :: a, b, init, h, t, w
+        real(kind=4) :: K1, K2, K3, K4
+
+        init = 0
+        h = .01
+        a = 0.0
+        b = 0.2
+        t = a
+        w = init
+        print *, t, w
+
+        do while(t < 0.2)
+            K1 = h* f(t,w)
+            K2 = h* f(t+(h/2.0), w + (K1/2.0))
+            K3 = h* f(t+(h/2.0), w + (K2/2.0))
+            K4 = h* f(t+h, w + K3)
+
+            w = w + (K1+2.0*K2+2*K3+K4)/6.0
+            t = t + h
+            print *, t, w
+        end do
+
+        end program
+
+        real *4 function f(x, y)
+        real (kind=4) :: k
+        !problem 27
+        k = 6.22E-19
+        f = k*((2.0E3-(y/2.0))**4)*(3.0E3-((3.0*y)/4.0))**3
+
+        return
+        end function
