@@ -1,0 +1,9 @@
+#Plot Data File
+set title "Interpolatory Polynomials Lagrange"
+plot [0:50] [0:50] "sample1.dat" with points
+#Now plot dat1.dat on top of points
+replot "dat1.dat" with lines
+#change graphics device to be a PostScript file
+set output "plot1.ps"
+set terminal postscript enhanced color landscape 
+replot
